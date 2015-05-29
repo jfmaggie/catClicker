@@ -1,0 +1,46 @@
+body {
+    background: #000;
+    color: #fff;
+}
+
+h1, .footer {
+    text-align: center;
+}
+
+.picholder {
+    height: 500px;
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.picholder h2 {
+    width: 300px;
+    text-align: center;
+}
+.catpicture {
+    width: 300px;
+    float: left;
+}
+
+.catpictureDual {
+    width: 300px;
+    float: right;
+}
+
+.controlPanel {
+    background: #BDBDBD;
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+    width: 700px;
+    text-align: center;
+}
+
+.controlPanel p {
+    font-size: 30px;
+    padding-top: 50px;
+}
+
+.clickcount {
+    color: #FF0040;
+}

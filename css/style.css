@@ -10,18 +10,12 @@ h1, .footer {
 .catholder {
     height: 300px;
     width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    text-align: left;
+    margin-left: 20%;
 }
 
-#cat1, .catpicture img{
-    width: 300px;
-    float: left;
-}
-
-#cat2, .catpictureDual img{
-    width: 300px;
-    float: right;
+.catholder ul {
+    width: 50px;
 }
 
 .controlPanel {
@@ -44,44 +38,15 @@ h1, .footer {
 
 
 .content {
-    text-align: center;
+
     margin-left: auto;
     margin-right: auto;
 }
 
-.item {
-    border: solid 1px #fff;
-    width: 100px;
-    font-size: 20px;
-    padding: 10px;
-    text-align: center;
-    display: inline-block;
+.selectedCat {
+    float: right;
 }
 
-.catlistholder .catimage {
-    display: none;
+.selectedCat img{
+    width: 300px;
 }
-.catimage {
-    height: 100px;
-    width: 100px;
-}
-
-.count {
-    vertical-align: top;
-    height: 128px;
-    line-height: 2;
-}
-
-.inputarea{
-    display: none;
-}
-
-input {
-    margin-top: 10px;
-}
-
-.inputarea button {
-    margin-top: 10px;
-    margin-right: 10px;
-}
-

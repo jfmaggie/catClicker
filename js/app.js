@@ -1,33 +1,59 @@
+var Cats = {
+    "cat1": {
+        catName: 'Lily',
+        catUrl: 'http://25.media.tumblr.com/tumblr_maotspCNK41rgiux1o1_1280.jpg',
+        catCount: 0
+    },
+    "cat2": {
+        catName: 'Lucy',
+        catUrl: 'http://25.media.tumblr.com/tumblr_maotspCNK41rgiux1o1_1280.jpg',
+        catCount: 0
+    }
+};
+
+// console.log(Cats);
+
+var addCatToDom = function() {
+    $('.catholder').append("<div id='cat1' class='catpicture' >" + "<h2>" + Cats.cat1.catName + "</h2>" + "</div>");
+    $('.catholder').append("<div id='cat2' class='catpictureDual' >" + "<h2>" + Cats.cat2.catName + "</h2>" + "</div>");
+
+    $('#cat1').append("<img  src='" + Cats.cat1.catUrl + "' alt='cat1Picture' />");
+    $('#cat2').append("<img  src='" + Cats.cat2.catUrl + "' alt='cat2Picture' />");
+
+};
+
+var clickCount = function(cat) {
+    var self = cat;
+    self.catCount++;
+    return self.catCount;
+};
+
+var init = function() {
+    addCatToDom();
+};
+
+var outputCountResult = function(cat) {
+    var self = cat;
+    $('.catname').html(self.catName);
+    $('.clickcount').html(self.catCount);
+};
+
+
 $(document).ready(function() {
-    var count1 = 0,
-          count2 = 0;
-    var catName;
+    init();
 
-    $('.catpicture').click(function() {
-
-        count1++;
-        $('.controlPanel').html(' <p><span class="catname">' + catName + '</span> Meow~<br>Clicked <span class="clickcount">0</span> time.</p>');
-        if (count1 > 1) {
-            $('.controlPanel').html(' <p><span class="catname">' + catName + '</span> Meow~<br>Clicked <span class="clickcount">0</span> times.</p>');
-        }
-
-        $('.clickcount').text(count1);
-        catName = $('.catpicture h2').text();
-        $('.catname').text(catName);
-        // console.log(count);
+    // click event
+    $('#cat1 img').click(function() {
+        // console.log("click cat1");
+        clickCount(Cats.cat1);
+        outputCountResult(Cats.cat1);
     });
 
-    $('.catpictureDual').click(function() {
-
-        count2++;
-        $('.controlPanel').html(' <p><span class="catname">' + catName + '</span> Meow~<br>Clicked <span class="clickcount">0</span> time.</p>');
-        if (count2 > 1) {
-            $('.controlPanel').html(' <p><span class="catname">' + catName + '</span> Meow~<br>Clicked <span class="clickcount">0</span> times.</p>');
-        }
-
-        $('.clickcount').text(count2);
-        catName = $('.catpictureDual h2').text();
-        $('.catname').text(catName);
-        // console.log(count);
+    $('#cat2 img').click(function() {
+        // console.log("click cat2");
+        clickCount(Cats.cat2);
+        outputCountResult(Cats.cat2);
     });
+
+
 });

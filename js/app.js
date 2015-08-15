@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var count1 = 0,
-        count2 = 0;
+          count2 = 0;
     var catName;
 
     $('.catpicture').click(function() {

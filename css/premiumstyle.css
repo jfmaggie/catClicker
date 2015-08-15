@@ -28,6 +28,15 @@
     line-height: 2;
 }
 
-.admin{
+.inputarea{
     display: none;
+}
+
+input {
+    margin-top: 10px;
+}
+
+.inputarea button {
+    margin-top: 10px;
+    margin-right: 10px;
 }

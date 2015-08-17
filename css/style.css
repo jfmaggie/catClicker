@@ -7,46 +7,8 @@ h1, .footer {
     text-align: center;
 }
 
-.catholder {
-    height: 300px;
-    width: 700px;
-    text-align: left;
-    margin-left: 20%;
-}
-
-.catholder ul {
-    width: 50px;
-}
-
-.controlPanel {
-    background: #BDBDBD;
-    margin-left: auto;
-    margin-right: auto;
-    height: 200px;
-    width: 700px;
-    text-align: center;
-}
-
-.controlPanel p {
-    font-size: 30px;
-    padding-top: 50px;
-}
-
-.clickcount {
-    color: #FF0040;
-}
-
-
 .content {
 
     margin-left: auto;
     margin-right: auto;
-}
-
-.selectedCat {
-    float: right;
-}
-
-.selectedCat img{
-    width: 300px;
 }

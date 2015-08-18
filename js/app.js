@@ -47,6 +47,15 @@ var control = {
     incrementCount: function(){
         model.currentCat.catCount++;
         catView.render();
+    },
+    addNewCat: function(catname, caturl, catcount){
+        var cat = {
+            catName: catname,
+            catUrl: caturl,
+            catCount: catcount
+        };
+        model.cats.push(cat);
+        model.currentCat = cat;
     }
 };
 
@@ -116,9 +125,6 @@ var catListView = {
 var adminView = {
     init: function(){
         this.admin = $('#admin');
-        this.inputCatName = $('#input-cat-name');
-        this.inputCatUrl = $('#input-cat-url');
-        this.inputCatCount = $('#input-cat-count');
         this.save = $('#save');
         this.cancel = $('#cancel');
 
@@ -130,11 +136,36 @@ var adminView = {
 
         // hide or display the form to save/cancel inputs
         var adForm = $('#ad-form');
+        var inputCatName = $('#input-cat-name');
+        var inputCatUrl = $('#input-cat-url');
+        var inputCatCount = $('#input-cat-count');
+        var newCatName, newCatUrl, newCatCount;
+
         this.admin.on('click', function(){
             adForm.toggle();
         });
 
+        // input event listener, input name get cat display updated
+        adForm.submit(function(event){
+            newCatName = inputCatName.val();
+            newCatUrl = inputCatUrl.val();
+            newCatCount = inputCatCount.val();
 
+            console.log(newCatName, newCatUrl, newCatCount);
+            event.preventDefault();
+
+            // add the new cat and set to currentcat
+            control.addNewCat(newCatName, newCatUrl, newCatCount);
+
+            // update the catdisplay view
+            catView.render();
+        });
+
+        // save button event listener, update the cat list
+        this.save.on('click', function(){});
+
+        // cancel the current input
+        this.cancel.on('click', function(){});
     }
 };
 

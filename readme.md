@@ -1,4 +1,4 @@
-#Project Requirements for Cat Clicker Premium Pro
+##Project Requirements for Cat Clicker Premium Pro
 
 #Visuals
 
@@ -16,7 +16,7 @@ In the cat display area, the following should be displayed
 - text showing the number of clicks
 - The specifics of the layout do not matter, so style it however you'd like.
 
-Interaction
+#Interaction
 
 - When a cat name is clicked in the list, the cat display area should update to show the data for the selected cat.
 - The number of clicks in the cat area should be unique to each cat, and should increment when the cat's picture is clicked.

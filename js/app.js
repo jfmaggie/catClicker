@@ -56,7 +56,7 @@ var control = {
         catListView.render();
         adminView.render();
     },
-    ToshowAdminView: function(display){
+    ToshowAdminView: function(display) {
         $('#ad-form').toggle(display);
     }
 };
@@ -126,46 +126,47 @@ var catListView = {
 
 // Third View: admin feature add/rm new cat and update in the list
 var adminView = {
+    s
     init: function() {
-        this.admin = $('#admin');
-        this.save = $('#save');
-        this.cancel = $('#cancel');
+            this.admin = $('#admin');
+            this.save = $('#save');
+            this.cancel = $('#cancel');
 
-        this.admin.on('click', function(){
-            // show form view
-            control.ToshowAdminView(true);
-            // form gets update with the current selected cat
+            this.admin.on('click', function() {
+                // show form view
+                control.ToshowAdminView(true);
+                // form gets update with the current selected cat
 
 
-        });
-        this.save.on('click', function(event){
-            // catview update with the input values
-            event.preventDefault();
-            control.updateCurrentCat();
-            // form view disapper
-             control.ToshowAdminView(false);
-        });
-        this.cancel.on('click', function(event){
-            // form view disapper
-            event.preventDefault();
-            control.ToshowAdminView(false);
-        });
+            });
+            this.save.on('click', function(event) {
+                // catview update with the input values
+                event.preventDefault();
+                control.updateCurrentCat();
+                // form view disapper
+                control.ToshowAdminView(false);
+            });
+            this.cancel.on('click', function(event) {
+                // form view disapper
+                event.preventDefault();
+                control.ToshowAdminView(false);
+            });
 
-        this.render();
+            this.render();
 
-    },
-    render: function() {
-        var current = control.getCurrentCat();
-        // console.log(current);
+        },
+        render: function() {
+            var current = control.getCurrentCat();
+            // console.log(current);
 
-        var inputCatName = $('#input-cat-name');
-        var inputCatUrl = $('#input-cat-url');
-        var inputCatCount = $('#input-cat-count');
+            var inputCatName = $('#input-cat-name');
+            var inputCatUrl = $('#input-cat-url');
+            var inputCatCount = $('#input-cat-count');
 
-        inputCatName.val(current.catName);
-        inputCatUrl.val(current.catUrl);
-        inputCatCount.val(current.catCount);
-    }
+            inputCatName.val(current.catName);
+            inputCatUrl.val(current.catUrl);
+            inputCatCount.val(current.catCount);
+        }
 };
 
 

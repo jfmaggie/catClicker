@@ -3,16 +3,16 @@ body {
     color: #fff;
 }
 
-h1, .footer {
+h1,
+.footer {
     text-align: center;
 }
 
 .content {
-
     margin-left: auto;
     margin-right: auto;
 }
 
-#ad-form{
+#ad-form {
     display: none;
 }

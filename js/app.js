@@ -126,7 +126,7 @@ var catListView = {
 
 // Third View: admin feature add/rm new cat and update in the list
 var adminView = {
-    s
+
     init: function() {
             this.admin = $('#admin');
             this.save = $('#save');

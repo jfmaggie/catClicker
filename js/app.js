@@ -1,7 +1,6 @@
 // Model
 var model = {
     currentCat: null,
-    toSave: false,
     cats: [{
         catName: 'Lily',
         catUrl: 'img/cat.jpeg',
@@ -28,34 +27,37 @@ var model = {
 
 // Contol
 var control = {
-    init: function(){
+    init: function() {
         model.currentCat = model.cats[0];
 
         catView.init();
         catListView.init();
         adminView.init();
     },
-    getCats: function(){
+    getCats: function() {
         return model.cats;
     },
-    setCurrentCat: function(cat){
+    setCurrentCat: function(cat) {
         model.currentCat = cat;
     },
-    getCurrentCat: function(){
+    getCurrentCat: function() {
         return model.currentCat;
     },
-    incrementCount: function(){
+    incrementCount: function() {
         model.currentCat.catCount++;
         catView.render();
+        adminView.render();
     },
-    addNewCat: function(catname, caturl, catcount){
-        var cat = {
-            catName: catname,
-            catUrl: caturl,
-            catCount: catcount
-        };
-        model.cats.push(cat);
-        model.currentCat = cat;
+    updateCurrentCat: function() {
+        model.currentCat.catName = $('#input-cat-name').val();
+        model.currentCat.catUrl = $('#input-cat-url').val();
+        model.currentCat.catCount = $('#input-cat-count').val();
+        catView.render();
+        catListView.render();
+        adminView.render();
+    },
+    ToshowAdminView: function(display){
+        $('#ad-form').toggle(display);
     }
 };
 
@@ -68,7 +70,7 @@ var catView = {
         this.catUrl = $('#cat-url');
         this.catCount = $('#cat-count');
 
-        this.catImg.on('click', function(){
+        this.catImg.on('click', function() {
             control.incrementCount();
         });
 
@@ -79,7 +81,7 @@ var catView = {
         // update the DOM elem and right values
         var currentCat = control.getCurrentCat();
         this.catName.text(currentCat.catName);
-        this.catImg.attr("src",currentCat.catUrl);
+        this.catImg.attr("src", currentCat.catUrl);
         this.catCount.text(currentCat.catCount);
 
         // console.log(this.catImg);
@@ -88,7 +90,7 @@ var catView = {
 
 // Second View: clickable cats list
 var catListView = {
-    init: function(){
+    init: function() {
         this.catList = $('#cat-list');
 
         this.render();
@@ -101,16 +103,17 @@ var catListView = {
         this.catList.html('');
 
         // loop over cats array and attach them
-        for(i = 0; i < cats.length; i++){
-            cat  = cats[i];
+        for (i = 0; i < cats.length; i++) {
+            cat = cats[i];
             elem = document.createElement('li');
             elem.textContent = cat.catName;
 
-            elem.addEventListener('click', (function(clickedCat){
-                return function(){
+            elem.addEventListener('click', (function(clickedCat) {
+                return function() {
                     // console.log(clickedCat.catName);
                     control.setCurrentCat(clickedCat);
                     catView.render();
+                    adminView.render();
                 };
             })(cat));
 
@@ -123,53 +126,47 @@ var catListView = {
 
 // Third View: admin feature add/rm new cat and update in the list
 var adminView = {
-    init: function(){
+    init: function() {
         this.admin = $('#admin');
         this.save = $('#save');
         this.cancel = $('#cancel');
 
+        this.admin.on('click', function(){
+            // show form view
+            control.ToshowAdminView(true);
+            // form gets update with the current selected cat
 
-        // add all the event listeners
+
+        });
+        this.save.on('click', function(event){
+            // catview update with the input values
+            event.preventDefault();
+            control.updateCurrentCat();
+            // form view disapper
+             control.ToshowAdminView(false);
+        });
+        this.cancel.on('click', function(event){
+            // form view disapper
+            event.preventDefault();
+            control.ToshowAdminView(false);
+        });
+
         this.render();
-    },
-    render: function(){
 
-        // hide or display the form to save/cancel inputs
-        var adForm = $('#ad-form');
+    },
+    render: function() {
+        var current = control.getCurrentCat();
+        // console.log(current);
+
         var inputCatName = $('#input-cat-name');
         var inputCatUrl = $('#input-cat-url');
         var inputCatCount = $('#input-cat-count');
-        var newCatName, newCatUrl, newCatCount;
 
-        this.admin.on('click', function(){
-            adForm.toggle();
-        });
-
-        // input event listener, input name get cat display updated
-        adForm.submit(function(event){
-            newCatName = inputCatName.val();
-            newCatUrl = inputCatUrl.val();
-            newCatCount = inputCatCount.val();
-
-            console.log(newCatName, newCatUrl, newCatCount);
-            event.preventDefault();
-
-            // add the new cat and set to currentcat
-            control.addNewCat(newCatName, newCatUrl, newCatCount);
-
-            // update the catdisplay view
-            catView.render();
-        });
-
-        // save button event listener, update the cat list
-        this.save.on('click', function(){});
-
-        // cancel the current input
-        this.cancel.on('click', function(){});
+        inputCatName.val(current.catName);
+        inputCatUrl.val(current.catUrl);
+        inputCatCount.val(current.catCount);
     }
 };
-
-
 
 
 // app starts

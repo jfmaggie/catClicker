@@ -1,6 +1,7 @@
 // Model
 var model = {
     currentCat: null,
+    toSave: false,
     cats: [{
         catName: 'Lily',
         catUrl: 'img/cat.jpeg',
@@ -22,6 +23,31 @@ var model = {
         catUrl: 'img/cat.jpeg',
         catCount: 0
     }]
+};
+
+
+// Contol
+var control = {
+    init: function(){
+        model.currentCat = model.cats[0];
+
+        catView.init();
+        catListView.init();
+        adminView.init();
+    },
+    getCats: function(){
+        return model.cats;
+    },
+    setCurrentCat: function(cat){
+        model.currentCat = cat;
+    },
+    getCurrentCat: function(){
+        return model.currentCat;
+    },
+    incrementCount: function(){
+        model.currentCat.catCount++;
+        catView.render();
+    }
 };
 
 // First View: display current selected cat area
@@ -86,28 +112,34 @@ var catListView = {
     }
 };
 
-// Contol
-var control = {
+// Third View: admin feature add/rm new cat and update in the list
+var adminView = {
     init: function(){
-        model.currentCat = model.cats[0];
+        this.admin = $('#admin');
+        this.inputCatName = $('#input-cat-name');
+        this.inputCatUrl = $('#input-cat-url');
+        this.inputCatCount = $('#input-cat-count');
+        this.save = $('#save');
+        this.cancel = $('#cancel');
 
-        catView.init();
-        catListView.init();
-    },
 
-    getCats: function(){
-        return model.cats;
+        // add all the event listeners
+        this.render();
     },
-    setCurrentCat: function(cat){
-        model.currentCat = cat;
-    },
-    getCurrentCat: function(){
-        return model.currentCat;
-    },
-    incrementCount: function(){
-        model.currentCat.catCount++;
-        catView.render();
+    render: function(){
+
+        // hide or display the form to save/cancel inputs
+        var adForm = $('#ad-form');
+        this.admin.on('click', function(){
+            adForm.toggle();
+        });
+
+
     }
 };
 
+
+
+
+// app starts
 control.init();
